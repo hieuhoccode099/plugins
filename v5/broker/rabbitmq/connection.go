@@ -261,8 +261,11 @@ func (r *rabbitMQConn) tryConnect(secure bool, config *amqp.Config) error {
 	return err
 }
 
-func (r *rabbitMQConn) Consume(queue, key string, headers amqp.Table, qArgs amqp.Table, autoAck, durableQueue bool) (*rabbitMQChannel, <-chan amqp.Delivery, error) {
-	consumerChannel, err := newRabbitChannel(r.Connection, r.prefetchCount, r.prefetchGlobal, r.confirmPublish)
+func (r *rabbitMQConn) Consume(queue, key string, headers amqp.Table, qArgs amqp.Table, autoAck, durableQueue bool, prefetchCount int) (*rabbitMQChannel, <-chan amqp.Delivery, error) {
+	if prefetchCount <= 0 {
+		prefetchCount = r.prefetchCount
+	}
+	consumerChannel, err := newRabbitChannel(r.Connection, prefetchCount, r.prefetchGlobal, r.confirmPublish)
 	if err != nil {
 		return nil, nil, err
 	}
