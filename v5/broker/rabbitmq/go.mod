@@ -31,3 +31,7 @@ require (
 	golang.org/x/tools v0.7.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 )
+
+replace (
+	go-micro.dev/v5 => ../../../../go-micro
+)
