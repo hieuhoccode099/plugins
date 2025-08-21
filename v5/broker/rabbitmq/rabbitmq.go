@@ -11,8 +11,8 @@ import (
 
 	"github.com/streadway/amqp"
 	"go-micro.dev/v5/broker"
-	"go-micro.dev/v5/logger"
 	"go-micro.dev/v5/cmd"
+	"go-micro.dev/v5/logger"
 )
 
 type rbroker struct {
@@ -122,6 +122,10 @@ func (s *subscriber) resubscribe() {
 		s.r.mtx.Lock()
 		if !s.r.conn.connected {
 			s.r.mtx.Unlock()
+			time.Sleep(reSubscribeDelay)
+			if reSubscribeDelay < maxResubscribeDelay {
+				reSubscribeDelay *= expFactor
+			}
 			continue
 		}
 
