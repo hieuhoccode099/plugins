@@ -71,4 +71,6 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 )
 
-replace go-micro.dev/v5 => github.com/hieuhoccode099/go-micro/v5 v5.0.1
+replace (
+	go-micro.dev/v5 => github.com/hieuhoccode099/go-micro/v5 v5.0.1
+)
