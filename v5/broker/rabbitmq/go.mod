@@ -7,7 +7,7 @@ toolchain go1.24.0
 require (
 	github.com/google/uuid v1.6.0
 	github.com/streadway/amqp v1.1.0
-	go-micro.dev/v5 v5.2.0
+	go-micro.dev/v5 v5.0.1
 )
 
 require (
@@ -71,4 +71,4 @@ require (
 	google.golang.org/protobuf v1.36.6 // indirect
 )
 
-replace go-micro.dev/v5 => github.com/hieuhoccode099/go-micro v0.0.1
+replace go-micro.dev/v5 => github.com/hieuhoccode099/go-micro/v5 v5.0.1
